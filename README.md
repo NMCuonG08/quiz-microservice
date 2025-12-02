@@ -4,35 +4,58 @@ A high-performance, monorepo microservices platform built with NestJS, optimized
 
 # 📑 Table of Contents
 
-* [🚀 Getting Started](#-getting-started)
-* [🏗️ System Architecture](#-system-architecture)
-* [📦 Monorepo Structure](#-monorepo-structure)
-* [✅ Tech Stacks](#-tech-stacks)
-* [🛠️ Installation Preparation](#-installation-preparation)
-* [🐳 Build with Docker](#build-with-docker-)
-  * [Setup Docker](#setup-docker)
-  * [Install Dependencies](#install-dependencies)
-  * [Build Services](#build-services)
-  * [Run Database Migrations](#run-database-migrations)
-  * [Start Microservices](#start-microservices)
-* [🧑‍💻 Manual Build](#-manual-build)
-  * [Prerequisites](#prerequisites)
-  * [Environment Setup](#environment-setup)
-  * [Install Dependencies](#install-dependencies-1)
-  * [Build](#build)
-  * [Run Database Migrations](#run-database-migrations-1)
-  * [Start Microservices](#start-microservices-1)
-* [🌐 API Gateway Configuration](#-api-gateway-configuration)
-  * [Apache APISIX (Default Gateway)](#apache-apisix-default-gateway)
-  * [Kong Gateway (Alternative Option)](#kong-gateway-alternative-option)
-* [🌍 Access URLs](#-access-urls)
-  * [🧭 API Gateways](#-api-gateways)
-  * [⚙️ Microservices](#-microservices)
-  * [🧰 Tools & Management UI](#-tools--management-ui)
-* [🔐 Demo API — Sign-Up & Login (cURL)](#-demo-api--sign-up--login-curl)
-  * [Sign-Up](#sign-up)
-  * [Login](#login)
-* [📘 Notes](#-notes)
+- [🧠 Nest Turbo Starter](#-nest-turbo-starter)
+- [📑 Table of Contents](#-table-of-contents)
+- [🚀 Getting Started](#-getting-started)
+  - [✨ Key Concepts (Monorepo \& Performance)](#-key-concepts-monorepo--performance)
+  - [🏗️ System Architecture](#️-system-architecture)
+  - [📦 Monorepo Structure](#-monorepo-structure)
+  - [✅ Tech Stacks](#-tech-stacks)
+    - [🚀 Core Backend](#-core-backend)
+    - [🌐 API Gateway \& Service Mesh](#-api-gateway--service-mesh)
+    - [Infrastructure \& DevOps](#infrastructure--devops)
+    - [🧰 Developer Tools](#-developer-tools)
+  - [| Dotenv | Env management |](#-dotenv--env-management-)
+  - [🛠️  Installation Preparation](#️--installation-preparation)
+- [Build with Docker 🐳](#build-with-docker-)
+    - [Setup Docker](#setup-docker)
+    - [Install Dependencies](#install-dependencies)
+    - [Build Services](#build-services)
+      - [Build all services](#build-all-services)
+      - [Build a single service](#build-a-single-service)
+    - [Run Database Migrations](#run-database-migrations)
+      - [Create migration file](#create-migration-file)
+      - [Run migrations for all services](#run-migrations-for-all-services)
+      - [Run migrations for a specific service](#run-migrations-for-a-specific-service)
+    - [Start Microservices](#start-microservices)
+      - [🧩 Development Mode](#-development-mode)
+      - [🚀 Production Mode](#-production-mode)
+- [🧑‍💻 Manual Build](#-manual-build)
+    - [Prerequisites](#prerequisites)
+      - [Create Only Required Docker Containers](#create-only-required-docker-containers)
+      - [Option 1 — Using `docker-compose-dev.yml`](#option-1--using-docker-compose-devyml)
+      - [Option 2 — Start Specific Containers](#option-2--start-specific-containers)
+      - [`pnpm` installed globally:](#pnpm-installed-globally)
+    - [Environment Setup](#environment-setup)
+    - [Install Dependencies](#install-dependencies-1)
+    - [Build](#build)
+    - [Run Database Migrations](#run-database-migrations-1)
+    - [Start Microservices](#start-microservices-1)
+      - [Development mode](#development-mode)
+      - [Production mode](#production-mode)
+  - [🌐 API Gateway Configuration](#-api-gateway-configuration)
+    - [Apache APISIX (Default Gateway)](#apache-apisix-default-gateway)
+      - [Sync configuration from file](#sync-configuration-from-file)
+      - [Dump configuration from DB for verification](#dump-configuration-from-db-for-verification)
+    - [Kong Gateway (Alternative Option)](#kong-gateway-alternative-option)
+- [🌍 Access URLs](#-access-urls)
+  - [🧭 API Gateways](#-api-gateways)
+  - [⚙️ Microservices](#️-microservices)
+  - [🧰 Tools \& Management UI](#-tools--management-ui)
+- [🔐 Demo API — Sign-Up \& Login (cURL)](#-demo-api--sign-up--login-curl)
+  - [Sign-Up](#sign-up)
+  - [Login](#login)
+- [📘 Notes](#-notes)
 
 # 🚀 Getting Started
 
@@ -112,6 +135,7 @@ This project implements a robust, containerized microservices architecture desig
 ## 🛠️  Installation Preparation
 
 1. **Default Base Path**
+set PWD=%CD%
 
    ```bash
    /home/app.user/nest-turbo-starter
@@ -190,7 +214,7 @@ docker compose exec node pnpm install
 #### Run migrations for all services
 
   ```bash
-  docker compose exec node pnpm migrate
+  docker compose exec node pnpm migration:up
   #or
   make migrate
   ```

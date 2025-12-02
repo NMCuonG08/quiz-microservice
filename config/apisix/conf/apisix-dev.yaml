@@ -18,7 +18,7 @@ global_rules:
       disable: false
     allow_origins: '*'
     allow_methods: '*'
-plugin_metadata: { }
+plugin_metadata: {}
 services:
   - name: Home
     plugins:
@@ -356,6 +356,4 @@ services:
         read: 6
         send: 6
       type: roundrobin
-ssls: [ ]
-
-
+ssls: []
